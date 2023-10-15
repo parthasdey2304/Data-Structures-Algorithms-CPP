@@ -4,6 +4,7 @@ This is an Open Source Repository for Data Structures and Algorithms using C++
 # Pre-requisites
 You need to install git for this:
 For windows : https://github.com/git-for-windows/git/releases/download/v2.42.0.windows.2/Git-2.42.0.2-64-bit.exe
+
 For Linux : 
 + Debian based:
 ```
