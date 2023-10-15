@@ -1,32 +1,28 @@
-// Special Number:
-// A special number is a number that has at least one prime factor repeated at least twice.
+// Happy Number:
+// A happy number is a number that, when you replace it by the sum of the squares
+// of its digits and repeat the process, eventually reaches the number 1.
 
 #include <iostream>
+#include <unordered_set>
 
-bool isPrime(int num) {
-    if (num <= 1)
-        return false;
+bool isHappyNumber(int num) {
+    std::unordered_set<int> seen;
 
-    for (int i = 2; i <= num / 2; ++i) {
-        if (num % i == 0)
-            return false;
-    }
+    while (num != 1 && seen.find(num) == seen.end()) {
+        seen.insert(num);
+        int sum = 0;
 
-    return true;
-}
-
-bool hasRepeatedPrimeFactor(int num) {
-    int count = 0;
-
-    for (int i = 2; i <= num; ++i) {
-        if (isPrime(i) && num % i == 0) {
-            ++count;
-            if (count >= 2)
-                return true;
+        // Calculate the sum of squares of digits
+        while (num > 0) {
+            int digit = num % 10;
+            sum += digit * digit;
+            num /= 10;
         }
+
+        num = sum;
     }
 
-    return false;
+    return num == 1;
 }
 
 int main() {
@@ -34,10 +30,10 @@ int main() {
     std::cout << "Enter a number: ";
     std::cin >> num;
 
-    if (hasRepeatedPrimeFactor(num))
-        std::cout << num << " is a Special number." << std::endl;
+    if (isHappyNumber(num))
+        std::cout << num << " is a Happy number." << std::endl;
     else
-        std::cout << num << " is not a Special number." << std::endl;
+        std::cout << num << " is not a Happy number." << std::endl;
 
     return 0;
 }
